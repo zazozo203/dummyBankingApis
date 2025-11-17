@@ -1,0 +1,35 @@
+
+@idempotencyKey = {{$guid}}
+
+
+###
+POST http://localhost:5500/api/login
+content-type: application/json
+
+{
+  "email": "akandemayokun@gmail.com",
+  "password": "mypass23"
+}
+
+
+###
+POST http://localhost:5500/api/register
+content-type: application/json
+
+{
+  "fullName": "Adeshina oluwasefunmi",
+  "email": "akandesefunmi@gmail.com",
+  "password": "mypass23"
+}
+
+
+###
+POST http://localhost:5500/api/auth/transfer
+idempotency-Key: {{ idempotencyKey }}
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoiYWthbmRlbWF5b2t1bkBnbWFpbC5jb20iLCJpYXQiOjE3NjMzODUxMDUsImV4cCI6MTc2MzM4ODcwNX0.xGv26VRb2u3-buIAIqzAsoG6lmPDMUi8gsA5rUzPZjo
+
+{
+  "receiverAccountId": "9456810177",
+  "amount": 100.50
+}

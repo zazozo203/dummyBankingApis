@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+ 
+  schemas  = ["public"]
+}
+
+model User {
+  id         Int        @id @default(autoincrement())
+  fullName   String
+  email      String     @unique
+  password   String
+  accounts   Account[]
+  createdAt  DateTime   @default(now())
+
+  @@schema("public")
+}
+
+model Account {
+  id           Int           @id @default(autoincrement())
+  accountNumber String     @unique
+  user         User          @relation(fields: [userId], references: [id])
+  userId       Int
+  balance      Decimal       @db.Decimal(20, 2) @default("0.00")
+  currency     String        @default("NGN")
+  transactions Transaction[] // <- FIXED (opposite of Transaction.account)
+  createdAt    DateTime      @default(now())
+
+  @@index([userId])
+  @@schema("public")
+}
+
+model Transaction {
+  id            Int      @id @default(autoincrement())
+  amount        Decimal  @db.Decimal(20, 2)
+  type          String   // debit or credit
+  accountId     Int
+  account       Account  @relation(fields: [accountId], references: [id]) // OK now
+  balanceBefore Decimal  @db.Decimal(20, 2)
+  balanceAfter  Decimal  @db.Decimal(20, 2)
+  description   String?
+  meta          Json?
+  createdAt     DateTime @default(now())
+
+  @@schema("public")
+}
+
+
+model Transfer {
+  id               Int      @id @default(autoincrement())
+  idempotencyKey   String?  @unique
+  senderAccountId  Int
+  receiverAccountId Int
+  amount           Decimal  @db.Decimal(20, 2)
+  currency         String   @default("NGN")
+  status           String   @default("completed")
+  failureReason    String?
+  createdAt        DateTime @default(now())
+
+  @@schema("public")
+}
