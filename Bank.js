@@ -15,6 +15,6 @@ Bank.use('/api/auth', accountRoutes);
 
 
 Bank.listen(process.env.PORT,()=>{
-    console.log('Bank is listening on port 5500')
+    console.log(`Bank is listening on port ${process.env.PORT}...`);
 })
 
