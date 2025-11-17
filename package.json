@@ -16,7 +16,9 @@
   "main": "Bank.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon Bank.js"
+    "start": "nodemon Bank.js",
+    "dev": "node Bank.js",
+    "build": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
