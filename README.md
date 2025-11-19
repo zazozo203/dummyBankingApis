@@ -49,3 +49,9 @@ npx prisma migrate dev
 **Start the server**
 
 npm start
+
+
+
+
+deloyed link : https://dummybankingapis.onrender.com/
+change the http://localhost:5500 to  https://dummybankingapis.onrender.com if you want to test the deployed api
