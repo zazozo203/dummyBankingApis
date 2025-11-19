@@ -3,17 +3,17 @@
 
 
 ###
-POST http://localhost:5500/api/login
+POST https://dummybankingapis.onrender.com/api/login
 content-type: application/json
 
 {
-  "email": "akandemayokun@gmail.com",
+  "email": "akandesefunmi@gmail.com",
   "password": "mypass23"
 }
 
 
 ###
-POST https://simplebankapis.netlify.app/api/register
+POST https://dummybankingapis.onrender.com/api/register
 content-type: application/json
 
 {
@@ -21,15 +21,21 @@ content-type: application/json
   "email": "akandesefunmi@gmail.com",
   "password": "mypass23"
 }
-
+1502308833
+1124859232
 
 ###
-POST http://localhost:5500/api/auth/transfer
+POST https://dummybankingapis.onrender.com/api/auth/transfer
 idempotency-Key: {{ idempotencyKey }}
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoiYWthbmRlbWF5b2t1bkBnbWFpbC5jb20iLCJpYXQiOjE3NjMzODUxMDUsImV4cCI6MTc2MzM4ODcwNX0.xGv26VRb2u3-buIAIqzAsoG6lmPDMUi8gsA5rUzPZjo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiYWthbmRlc2VmdW5taUBnbWFpbC5jb20iLCJpYXQiOjE3NjM0NTYyODMsImV4cCI6MTc2MzQ1OTg4M30.4gUTekhrKcOskYhLa8_huR7zs2SBPFKNBjzg2kUjpZM
 
 {
-  "receiverAccountId": "9456810177",
+  "receiverAccountId": "1502308833",
   "amount": 100.50
 }
+
+###
+GET https://dummybankingapis.onrender.com/api/auth/details
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiYWthbmRlc2VmdW5taUBnbWFpbC5jb20iLCJpYXQiOjE3NjM1NjM4OTMsImV4cCI6MTc2MzU2NzQ5M30.TNpNyg7rigivOXG6Q5I4Swtz9jo8bSsKvDHx1_L1MSo
+Content-Type: application/json

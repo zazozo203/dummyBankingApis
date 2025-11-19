@@ -6,6 +6,19 @@ const { send } = require('process');
 const prisma = new PrismaClient();
 
 
+exports.checkAccountDetails = async (req, res) => {
+  authenticatedUser = req.user;
+ try {
+ let accountDeatails= await prisma.user.findUnique({ where: { id: authenticatedUser.id }, include: { accounts: true } });
+  return res.status(200).json({ success: true, data: accountDeatails.accounts[0] });
+ }
+ catch (error) {
+  console.error(error);
+  return res.status(500).json({ success: false, error: 'Internal server error' });
+}
+};
+
+
 exports.transferFunds = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
